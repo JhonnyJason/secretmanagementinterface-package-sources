@@ -67,20 +67,35 @@ Current Functionality
 
 ## Expected Service API
 
-- addNodeId(publicKeyHex)
-- removeNodeId(publicKeyHex)
-- getEncryptedSecretSpace(publicKeyHex)
-- getSecret(publicKeyHex, secretId)
-- setSecret(publicKeyHex, secretId, secret)
-- deleteSecret(publicKeyHex, secretId)
-- addSubSpaceFor(publicKeyHex, fromId)
-- removeSubSpaceFor(publicKeyHex, fromId)
-- shareSecretTo(publicKeyHex, shareToIdHex, secretId, secret)
-- deleteSharedSecret(sharedToIdHex, publicKeyHex, secretId)
-- addNotificationHook(publicKeyHex, type, specific)
-- generateAuthCodeFor(publicKeyHex)
-- addFriendServer(serverURL, serverNodeIdHex)
-- getSignedNodeId()
+```coffee
+export  addNodeId = (publicKeyHex) -> return
+
+export removeNodeId = (publicKeyHex) -> return
+
+export getEncryptedSecretSpace(publicKeyHex) -> {referencePointHex, encryptedContentHex}
+        
+export getSecret = (publicKeyHex, secretId) -> {referencePointHex, encryptedContentHex}
+
+export setSecret = (publicKeyHex, secretId, secret) -> return
+
+export deleteSecret = (publicKeyHex, secretId) -> return
+
+export addSubSpaceFor = (publicKeyHex, fromId) -> return
+
+export removeSubSpaceFor = (publicKeyHex, fromId) -> return
+
+export shareSecretTo = (publicKeyHex, shareToIdHex, secretId, secret) -> return
+
+export deleteSharedSecret = (sharedToIdHex, publicKeyHex, secretId) -> return
+
+export addNotificationHook = (publicKeyHex, type, specific) -> return
+
+export generateAuthCodeFor = (publicKeyHex) -> {authCode}
+
+export addFriendServer = (serverURL, serverNodeIdHex) -> return
+
+export getSignedNodeId = () -> {publicKey, timestamp, signature}
+```
 
 ---
 
