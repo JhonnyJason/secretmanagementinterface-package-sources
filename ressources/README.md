@@ -1,29 +1,93 @@
-# noname - 
+# secretmanagementinterface package 
 
-# Why?
+# Background
+For an easier intergration of the [secretmanagerinterface](https://hackmd.io/EtJSEnxjTVOOvRJdWGJlYw?view) into thingies who need it.
 
-# What?
+The basis for this is the general style to implement [Thingy Interfaces](https://hackmd.io/SEDcVeUPTliQfjcgG7NT_g?view).
 
-# How?
+The conclusion was to use an ESM package exporting the client-interface as `sci`
+the express routes as `routes` and the handlers as `handlers`.  
+
+The `sci` and the `routes` are a direct result of the SCI definition.
+As well are the `handlers` stubs. However the `handlers` content is more specific to the actual functionality. We may still assume that also the specific content of the `handlers` functions is stable/evolving with the SCI and the Service.
+
+Thus we just abstracted away the specific service code which might be arbitrarily implemented. This is the service which needs to be passed to the `handlers` via `handlers.setService(serviceToSet)` and should implement the expected API.
+
+# Usage
 Requirements
 ------------
+- nodejs >= 14
+- ESM importability
 
 Installation
 ------------
+Current git version:
+```
+npm install git+https://github.com/JhonnyJason/secretmanagementinterface-package-output.git
+```
+Npm Registry:
+```
+npm install secretmanagementinterface
+```
 
 
-Usage
------
+## Client Side
+This one is straight forward as the direct function to be called is exposed in the `sci` export.
 
+```coffee
+import {sci} from "secretmanagementinterface"
+
+result = await sci.addNodeId(sciURL, publicKey, timestamp, signature)
+
+```
+
+## Server Side
+Here it is worth to consider the [thingy-sci-base](https://www.npmjs.com/package/thingy-sci-base) package. As this already abstracts away the express and systemd socket handling code.
+
+```coffee
+import * as sciBase from "thingy-sci-base"
+import { routes, handlers } from "secretmanagementinterface"
+import * as service from "./ourSpecificImplementation.js"
+
+handlers.setService(service)
+sciBase.prepareAndExpose(service.authenticateRequest, routes)
+
+```
 
 Current Functionality
 ---------------------
+- The `routes` exported functions are what express expects.
+- The `routes` expect to be called with a parsed JSON for `req.body`.
+- The `routes` will call the specific handler functions.
+- The `routes` will send back the JSON how the handlers respond.
+- The `routes` will catch any exceptions and respond with an error in that case.
+- The `handlers` will call the appropriate `service` function.
+- The `handlers` will assert the returned response is valid.
+- The `service` functions may be async.
 
+## Expected Service API
+
+- addNodeId(publicKeyHex)
+- removeNodeId(publicKeyHex)
+- getEncryptedSecretSpace(publicKeyHex)
+- getSecret(publicKeyHex, secretId)
+- setSecret(publicKeyHex, secretId, secret)
+- deleteSecret(publicKeyHex, secretId)
+- addSubSpaceFor(publicKeyHex, fromId)
+- removeSubSpaceFor(publicKeyHex, fromId)
+- shareSecretTo(publicKeyHex, shareToIdHex, secretId, secret)
+- deleteSharedSecret(sharedToIdHex, publicKeyHex, secretId)
+- addNotificationHook(publicKeyHex, type, specific)
+- generateAuthCodeFor(publicKeyHex)
+- addFriendServer(serverURL, serverNodeIdHex)
+- getSignedNodeId()
 
 ---
 
 # Further steps
 
+- fix bugs
+- improve flexibility and convenience
 - ...
 
 
