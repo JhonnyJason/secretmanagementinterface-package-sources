@@ -1,24 +1,31 @@
 {
-  "name": "secretmanagementinterface",
-  "version": "0.0.1",
-  "description": "Convenience package to load glue code for client and server - secifically the sci and its express middleware.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": ["secret-manager", "interface", "secretmanagementinterface", "secretmanagerinterface", "thingy", "sci"],
-  "author": "Lenard Frommelt lenard@frommelt.dev",
-  "license": "Unlicense",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JhonnyJason/secretmanagementinterface-package.git"
-  },
-  "bugs": {
-    "url": "https://github.com/JhonnyJason/secretmanagementinterface-package/issues"
-  },
-  "homepage": "https://github.com/JhonnyJason/secretmanagementinterface-package#readme",
-  "dependencies": {
-      "thingy-network-base": "^0.0.1"
-  },
-  "type": "module"
+    "name": "secretmanagementinterface",
+    "version": "0.0.1",
+    "description": "Convenience package to load glue code for client and server - secifically the sci and its express middleware.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "secret-manager",
+        "interface",
+        "secretmanagementinterface",
+        "secretmanagerinterface",
+        "thingy",
+        "sci"
+    ],
+    "author": "Lenard Frommelt lenard@frommelt.dev",
+    "license": "Unlicense",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JhonnyJason/secretmanagementinterface-package.git"
+    },
+    "bugs": {
+        "url": "https://github.com/JhonnyJason/secretmanagementinterface-package/issues"
+    },
+    "homepage": "https://github.com/JhonnyJason/secretmanagementinterface-package#readme",
+    "dependencies": {
+        "thingy-network-base": "^0.0.1"
+    },
+    "type": "module"
 }
